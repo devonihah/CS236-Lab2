@@ -39,6 +39,7 @@ public:
 				match(SCHEMES);
 				match(COLON);
 				while (getTokenType() != FACTS && errorVector.size() < 1) { scheme(); }
+				if (schemeVector.size() <= 0) throwError();
 			}
 			if (getTokenType() == FACTS)
 			{
@@ -165,6 +166,7 @@ public:
 				match(ID);
 				schemeList();
 				match(RIGHT_PAREN);
+				if (schemeVector.at(schemeVector.size() - 1).getParams().size() <= 0) throwError();
 			}
 		}
 		else
@@ -184,8 +186,7 @@ public:
 			//cout << parserTokens.at(0).getValue() << endl;
 			schemeParameter.setParam(parserTokens.at(0).getValue());
 			schemeVector.at(schemeVector.size() - 1).addParameter(schemeParameter);
-			if (getTokenType() == ID) match(ID);
-			else { match(STRING); }
+			match(ID);
 
 			schemeList(); //get next parameter
 		}
@@ -213,11 +214,13 @@ public:
 				domain.insert(parserTokens.at(0).getValue());
 				factParameter.setParam(parserTokens.at(0).getValue());
 				factVector.at(factVector.size() - 1).addParameter(factParameter);
-				if (getTokenType() == ID) { match(ID); }
-				else if (getTokenType() == STRING) { match(STRING); }
+				//if (getTokenType() == STRING) { 
+				match(STRING); 
+				//}
 				factList();
 				match(RIGHT_PAREN);
 				match(PERIOD);
+				if (factVector.at(factVector.size() - 1).getParams().size() <= 0) throwError();
 			}
 		}
 		else
@@ -237,13 +240,13 @@ public:
 			//cout << parserTokens.at(0).getValue() << endl;
 			domain.insert(parserTokens.at(0).getValue());
 			factParameter.setParam(parserTokens.at(0).getValue());
-			if (getTokenType() == ID)
-			{
-				factParameter.setIsID(true);
-				factVector.at(factVector.size() - 1).addParameter(factParameter);
-				match(ID);
-			}
-			else if (getTokenType() == STRING)
+			//if (getTokenType() == ID)
+			//{
+			//	factParameter.setIsID(true);
+			//	factVector.at(factVector.size() - 1).addParameter(factParameter);
+			//	match(ID);
+			//}
+			if (getTokenType() == STRING)
 			{
 				factParameter.setIsID(false);
 				factVector.at(factVector.size() - 1).addParameter(factParameter);
