@@ -65,6 +65,7 @@ public:
 				match(QUERIES);
 				match(COLON);
 				while (getTokenType() != END && errorVector.size() < 1) { query(); }
+				if (queryVector.size() <= 0) throwError();
 				match(END);
 			}
 			else
