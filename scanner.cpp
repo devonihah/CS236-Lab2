@@ -266,6 +266,7 @@ void scanner::IDScanner()
 
 void scanner::tokenCreator(tokenType type, int lineNum)
 {
+	if (type == COMMENT) return;
 	token myToken(type, value, lineNum);
 	//outputFile << myToken.toString() << endl;
 	//cout << myToken.toString() << endl;
