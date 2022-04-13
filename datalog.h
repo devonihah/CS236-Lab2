@@ -96,8 +96,6 @@ public:
 		for (it = domain.begin(); it != domain.end(); it++) {
 			datalogSS << "\n" << "  " << *it;
 		}
-		cout << endl;
-
 		return datalogSS.str();
 	}
 

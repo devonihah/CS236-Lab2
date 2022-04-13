@@ -272,26 +272,28 @@ public:
 			//cout << parserTokens.at(0).getValue() << endl;
 			headPredicateParameter.setParam(parserTokens.at(0).getValue());
 			ruleVector.at(ruleVector.size() - 1).setHeadPredicateParam(headPredicateParameter); //set the first parameter for the head predicate
-			match(ID);
+			if (getTokenType() == ID) { match(ID); }
+			else if (getTokenType() == STRING) { match(STRING); }
 			ruleHeadPredicate(); //set the rest of the parameters for the head predicate
 
 			match(RIGHT_PAREN);
 			match(COLON_DASH);
 			if (getTokenType() == COMMA) { throwError(); }
-
 			do //get the rest of the predicates that establish the rule
 			{
 				if (getTokenType() == COMMA) { match(COMMA); }
 				//cout << parserTokens.at(0).getValue() << endl;
 				rulePredicate.setPredicateName(parserTokens.at(0).getValue());
 				rulePredicateVector.push_back(rulePredicate);
-				match(ID);
+				if (getTokenType() == ID) { match(ID); }
+				else if (getTokenType() == STRING) { match(STRING); }
 				match(LEFT_PAREN);
 				parameter ruleParameter;
 				//cout << parserTokens.at(0).getValue() << endl;
 				ruleParameter.setParam(parserTokens.at(0).getValue());
 				rulePredicateVector.at(rulePredicateVector.size() - 1).addParameter(ruleParameter);
-				match(ID);
+				if (getTokenType() == ID) { match(ID); }
+				else if (getTokenType() == STRING) { match(STRING); }
 				ruleList();
 				match(RIGHT_PAREN);
 				for (unsigned int i = 0; i < rulePredicateVector.size(); i++)
@@ -334,13 +336,14 @@ public:
 		if (getTokenType() == COMMA)
 		{
 			match(COMMA);
-			if (getTokenType() == ID)
+			if (getTokenType() == ID || getTokenType() == STRING)
 			{
 				parameter ruleParameter;
 				//cout << parserTokens.at(0).getValue() << endl;
 				ruleParameter.setParam(parserTokens.at(0).getValue());
 				rulePredicateVector.at(rulePredicateVector.size() - 1).addParameter(ruleParameter);
-				match(ID);
+				if (getTokenType() == ID) { match(ID); }
+				else if (getTokenType() == STRING) { match(STRING); }
 			}
 			ruleList();
 		}

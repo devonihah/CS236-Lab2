@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
         parser myParser(myScanner.getTokenVector());
         myParser.parseTokens();
         //interpreter myInterpreter(myParser.getDatalog());
+        cout << endl;
     }
     return 0;
 }
