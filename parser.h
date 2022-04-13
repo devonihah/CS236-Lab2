@@ -131,7 +131,13 @@ public:
 	{
 		//cout << "match: " << t << endl;
 		if (getTokenType() == t)
+		{
 			advanceToken();
+		}
+		//else if (getTokenType() == COMMENT)
+		//{
+		//	match(t);
+		//}
 		else
 			throwError();
 	}

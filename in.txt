@@ -1,13 +1,25 @@
+
+
+# small test with no syntax errors
+
+
 Schemes:
-  snap(S,N,A,P)
-  HasSameAddress(X,Y)
+
+  sister(x,y)
+  parent(x,y)
+  aunt(x,y)
 
 Facts:
-  snap('12345','C. Brown','12 Apple','555-1234').
-  snap('33333','Snoopy','12 Apple','555-1234').
+
+  sister('Ann', 'Bob').
+  parent('Bob', 'Jay').
 
 Rules:
-  HasSameAddress(X,Y) :- snap(A,X,B,C),snap(D,Y,B,E).
+
+  aunt(x,z) :- sister(x,y), parent(y,z).
 
 Queries:
-  HasSameAddress('Snoopy',Who)?
+
+  aunt('Ann', 'Jay')?
+
+
