@@ -1,25 +1,18 @@
 
 
-# small test with no syntax errors
+# test with no errors, smallest valid sizes of lists
 
 
 Schemes:
 
-  sister(x,y)
-  parent(x,y)
-  aunt(x,y)
+  a(x)
 
 Facts:
 
-  sister('Ann', 'Bob').
-  parent('Bob', 'Jay').
-
 Rules:
-
-  aunt(x,z) :- sister(x,y), parent(y,z).
 
 Queries:
 
-  aunt('Ann', 'Jay')?
+  a('A')?
 
 

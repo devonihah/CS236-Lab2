@@ -183,8 +183,9 @@ public:
 			//cout << parserTokens.at(0).getValue() << endl;
 			schemeParameter.setParam(parserTokens.at(0).getValue());
 			schemeVector.at(schemeVector.size() - 1).addParameter(schemeParameter);
+			if (getTokenType() == ID) match(ID);
+			else { match(STRING); }
 
-			match(ID);
 			schemeList(); //get next parameter
 		}
 		else
