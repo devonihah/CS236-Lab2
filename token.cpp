@@ -9,7 +9,7 @@ using namespace std;
 string token::toString()
 {
 	string out;
-	out = "(" + mapOfTokens[type] + "," + value + "," + lineToString() + ")";
+	out = "(" + mapOfTokens[type] + ",\"" + value + "\"," + lineToString() + ")";
 	return out;
 }
 

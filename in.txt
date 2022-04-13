@@ -1,18 +1,25 @@
 
 
-# test with no errors, smallest valid sizes of lists
+# error, period after a scheme predicate
 
 
 Schemes:
 
-  a(x)
+  sister(x,y)
+  parent(x,y)
+  aunt(x,y).
 
 Facts:
 
+  sister('Ann', 'Bob').
+  parent('Bob', 'Jay').
+
 Rules:
+
+  aunt(x,z) :- sister(x,y), parent(y,z).
 
 Queries:
 
-  a('A')?
+  aunt('Ann', 'Jay')?
 
 

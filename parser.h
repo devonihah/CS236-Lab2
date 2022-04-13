@@ -75,7 +75,7 @@ public:
 		if (errorVector.size() > 0)
 		{
 			stringstream out;
-			cout << "Failure!" << errorVector.at(0).toString() << endl;
+			cout << "Failure!\n  " << errorVector.at(0).toString();
 			return out.str();
 		}
 		else

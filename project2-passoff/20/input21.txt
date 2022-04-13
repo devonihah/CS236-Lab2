@@ -5,21 +5,21 @@
 
 Schemes:
 
-  sister(x,y)
-  parent(x,y)
-  aunt(x,y)
+  married(x,y)
+  child(x,y)
 
 Facts:
 
-  sister('Ann', 'Bob').
-  parent('Bob', 'Jay').
+  married('Jim', 'Bea').
+  child('Ned', 'Bea').
 
 Rules:
 
-  aunt(x,z) :- sister(x,y), parent(y,z).
+  married(y,x) :- married(x,y).
+  child(x,z) :- child(x,y), married(y,z).
 
 Queries:
 
-  aunt('Ann', 'Jay')?
+  child('Ned', 'Jim')?
 
 
